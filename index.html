@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>balltest</title>
+</head>
+<body>
+  <div id="app">
+    <img src="ball.png" id="ball" width="80px">
+  </div>
+  <script>
+    var ball = document.getElementById("ball");
+    var flag=true;
+    // ball.onmousedown = function(event){
+    //   console.log("タップされたよ!");
+    // }
+    ball.style.position = "absolute";
+    ball.onmousedown = function(event){
+        if (flag) {
+            document.addEventListener("mousemove",onMouseMove);
+            flag=false;        
+        }else{
+            document.removeEventListener("mousemove",onMouseMove);
+            flag=true;
+        }
+    }
+    ball.onmouseup=function(){
+        console.log("a");
+    }
+    var onMouseMove = function(event){
+        var x = event.clientX;
+        var y = event.clientY;
+        var width = ball.offsetWidth;
+        var height = ball.offsetHeight;
+        ball.style.top = (y-height/2) + "px";
+        ball.style.left = (x-width/2) + "px";
+    }
+  </script>
+</body>
+</html>
